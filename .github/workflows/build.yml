@@ -1,0 +1,44 @@
+on:
+  push:
+    branches: [ 'feature/v6' ]
+
+env:
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
+  PACKAGE_VERSION: '6.0.0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Clean package
+      run: dotnet clean
+
+    - name: Restore package
+      run: dotnet restore
+
+    - name: Build package
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Pack package
+      run: dotnet pack --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }} /p:PackageVersion=${{ env.PACKAGE_VERSION }}
+
+    - name: Generate nuspec
+      run: (Get-Content -path Xbim.Essentials.tmpl -Raw).Replace('{{version}}','${{ env.PACKAGE_VERSION }}') | Set-Content -Path Xbim.Essentials.nuspec
+      shell: pwsh
+
+    - name: Generate metapackage
+      run: nuget pack Xbim.Essentials.nuspec -OutputDirectory ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+
+    - name: Upload artifact package
+      uses: actions/upload-artifact@v3
+      with:
+        name: Package artifact
+        path: ${{ env.PACKAGE_OUTPUT_DIRECTORY }}

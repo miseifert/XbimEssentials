@@ -3,6 +3,7 @@
     <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <Title>Xbim Common</Title>
     <Description>Provides support for the Xbim commonly used behaviours and interfaces.</Description>
+	<PackageId>Ps.$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' ">
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />

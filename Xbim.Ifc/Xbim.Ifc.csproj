@@ -10,6 +10,7 @@
       XbimReferencedModel
     </Description>
     <RootNamespace>Xbim.Ifc</RootNamespace>
+    <PackageId>Ps.$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

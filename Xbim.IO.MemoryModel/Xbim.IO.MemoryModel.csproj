@@ -3,6 +3,7 @@
     <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <Title>Xbim IO for in-Memory Models</Title>
     <Description>Manages IFC or STEP Model backed by an in-memory representation</Description>
+	<PackageId>Ps.$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />

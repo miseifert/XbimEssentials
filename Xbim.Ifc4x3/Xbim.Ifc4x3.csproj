@@ -5,6 +5,7 @@
     <Title>Xbim IFC4x3</Title>
     <Product>Xbim Ifc4x3 Schema</Product>
     <Description>Implementation of the IFC4x3 schema.</Description>
+	<PackageId>Ps.$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
